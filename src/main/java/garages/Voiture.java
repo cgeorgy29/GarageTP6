@@ -28,7 +28,7 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
-                if(this.estDansUnGarage() == true){
+                if(estDansUnGarage() == true){
                     throw new Exception ("La voiture est déjà stationnée dans un garage.");
                 }
 		Stationnement s = new Stationnement(this, g);
@@ -45,10 +45,10 @@ public class Voiture {
 		// TODO: Implémenter cette méthode
 		// Trouver le dernier stationnement de la voiture
 		// Terminer ce stationnement
-                if(this.estDansUnGarage() == false){
+                if(estDansUnGarage() == false){
                     throw new Exception ("La voiture n'est pas stationnée dans un garage.");
                         }
-                this.myStationnements.get(myStationnements.size() - 1).terminer();
+                myStationnements.get(myStationnements.size() - 1).terminer();
 	}
 
 	/**
@@ -57,8 +57,8 @@ public class Voiture {
 	public Set<Garage> garagesVisites() {
 		// TODO: Implémenter cette méthode
                 Set<Garage> gset = new HashSet<>();
-		for (int i = 0; i <= this.myStationnements.size() - 1; i++){
-                    gset.add(this.myStationnements.get(i).getGarage());
+		for (int i = 0; i <= myStationnements.size() - 1; i++){
+                    gset.add(myStationnements.get(i).getGarage());
 		}
 		return gset;
         }
@@ -69,8 +69,8 @@ public class Voiture {
 	public boolean estDansUnGarage() {
 		// TODO: Implémenter cette méthode
 		// Vrai si le dernier stationnement est en cours
-        if(this.myStationnements.size() > 0){
-            return this.myStationnements.get(myStationnements.size() - 1).estEnCours();
+        if(myStationnements.size() > 0){
+            return myStationnements.get(myStationnements.size() - 1).estEnCours();
         } else {return false;}
 	}
 	/**
@@ -92,10 +92,10 @@ public class Voiture {
 	public void imprimeStationnements(PrintStream out) {
 		// TODO: Implémenter cette méthode
             String imp ="";
-		Set<Garage> garage = this.garagesVisites();
+		Set<Garage> garage = garagesVisites();
 		for (Garage g : garage) {
 			imp +=g.toString()+":\n";
-			for (Stationnement st : this.myStationnements){
+			for (Stationnement st : myStationnements){
 				if(st.getCar() == this && st.getGarage() == g) {
 					imp +="\t"+st.toString()+"\n";
 				}
